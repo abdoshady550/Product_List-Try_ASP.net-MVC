@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Product>
+
+
+<div class="container py-4">
+	<div class="d-flex justify-content-between align-items-center mb-3">
+		<h2 class="text-primary">📦 List of Products</h2>
+		<a class="btn btn-success btn-lg" asp-action="Create">
+			<i class="bi bi-plus-circle me-1"></i> Add Product
+		</a>
+	</div>
+
+	<div class="table-responsive animate__animated animate__fadeIn">
+		<table class="table table-hover align-middle shadow-sm border">
+			<thead class="table-dark">
+				<tr>
+					<th>Name</th>
+					<th>Quantity</th>
+					<th class="text-end">Price</th>
+					<th style="width: 200px;" class="text-end">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var product in Model)
+				{
+					<tr>
+						<td>@product.Name</td>
+						<td>@product.Quantity</td>
+						<td class="text-end">@product.Price?.ToString("C")</td>
+						<td class="text-end">
+							<div class="btn-group btn-group-sm">
+								<a class="btn btn-outline-secondary" asp-action="Edit" asp-route-id="@product.Id">
+									<i class="bi bi-pencil-square"></i>
+								</a>
+								<a class="btn btn-outline-info" asp-action="Details" asp-route-id="@product.Id">
+									<i class="bi bi-eye"></i>
+								</a>
+								<a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@product.Id">
+									<i class="bi bi-trash"></i>
+								</a>
+							</div>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</div>
